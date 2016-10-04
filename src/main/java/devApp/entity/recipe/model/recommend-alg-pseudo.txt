@@ -1,0 +1,70 @@
+Recommender Algorithm
+Pseudocode
+
+By Jon Chin (10/4/16)
+
+---------------------------------------------------------------------
+
+Organization of Data:
+
+- An "ingredient" is an object that has a String as one of its properties
+    - Ex: butter, sugar
+
+- A "recipe" is a *sorted* array of ingredients
+
+- All recipes are stored in a map, where the key is the # of ingredients
+  in a recipe (or the length of the array), and the value is a list of
+  all the recipes that have the same # of ingredients as the key
+
+Ex:
+
+Key | Value
+----+-------------------
+  3 | <[b, e, s], [a, d, f], [f, y, y]>     *<...> denotes a list
+  4 | <[a, b, b, c], [d, f, g, h]>          *b -> an ingredient that starts with b
+  5 | <[g, h, i, j, j], [l, m, n, n, o]>    *Ex: [butter, eggs, sugar] -> [b, e, s]
+
+---------------------------------------------------------------------
+
+Algorithm for finding recipes that match 80% with the recipes input into the program:
+
+1. Take in x number of ingredients from the user and put them in an array A
+    - Ex: array A - [f, e, h, b] => x = 4 (A.length = 4)
+
+2. Sort the array A
+    - Ex: A is now [b, e, f, h]
+
+*Key point: an array A that has n elements must be compared with an array B that has
+  [n / 0.8] or [n / (4/5)] or [n * 5/4] elements in order for 80% of B to match A
+    - Ex: A.length = 4, 4 * (5/4) = 5; therefore, B.length must equal 5
+
+With the knowledge that the # of ingredients to compare A to must be x/0.8, the
+  length of the comparison array B must be x/0.8
+
+3. Get the list of arrays corresponding to the key that equals x/0.8
+    - Ex: 4/0.8 = 4 * 5/4 = 5
+
+4. Compare A with the possibilities for B, to see which arrays are an 80% match:
+    a. Do so by keeping a running count of wordsMatched and wordsNotMatched, where
+       wordsMatched = x and wordsNotMatched = x/0.8 - x = x/4
+    - The logic here is that an array A that matches 80% of array B will have 80% of
+      the same ingredients in it
+    - So, you keep track of how many ingredients matched and how many didn't as you
+      move through both arrays:
+        i.  If wordsMatched == x, return True
+        ii. If wordsNotMatched > x/4, return False
+
+---------------------------------------------------------------------
+
+Other things to note:
+
+- You can use a variant of this algorithm to implement 100% matching first
+    - You would just be comparing A to B, which would be much quicker
+- A completely different approach would be to match the ingredients entered in 
+  realtime
+    - The user types in 1 ingredient, and all recipes that include that ingredient
+      are displayed
+    - The user enters another ingredient, and only recipes that have both ingredients
+      are displayed
+    - This continues untill the user has entered all ingredients, and only recipes
+      that match the input exactly or contain the input are shown
