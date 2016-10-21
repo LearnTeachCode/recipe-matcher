@@ -1,4 +1,5 @@
 package devApp.entity.recipe.model;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 /**
  * Created by jonchin on 10/12/16.
@@ -22,11 +24,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "RECIPES")
-public class Recipe {
+public class Recipe implements Serializable{
 
-    private Integer key = null;                    // ? - don't remember what this was for...
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer key = null;                    // ? - don't remember what this was for...
     private String name = null;                // name of the recipe
-    private Set<Ingredient> ingredients;   // an array of ingredients
+    private Set<Ingredient> ingredients = new HashSet<Ingredient>();   // an array of ingredients
     private String description = null;         // description of the recipe
    // private List<String> instructions;  // list of instructions
 	
@@ -60,7 +66,11 @@ public class Recipe {
 	}
 
 	
-	//SPECIAL ANNOTATION
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "Recipes_Ingredients", joinColumns = {
+			@JoinColumn(name = "RECIPE_ID", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "INGREDIENT_ID",
+					nullable = false, updatable = false) })
 	public Set<Ingredient> getIngredients() {
 		return ingredients;
 	}
