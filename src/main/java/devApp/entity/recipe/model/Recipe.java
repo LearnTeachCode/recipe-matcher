@@ -28,9 +28,6 @@ import javax.persistence.JoinColumn;
 @Table(name = "RECIPES")
 public class Recipe implements Serializable{
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Integer key = null;                    // ? - don't remember what this was for...
     private String name = null;                // name of the recipe

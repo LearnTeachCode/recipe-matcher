@@ -16,10 +16,6 @@ import javax.persistence.Table;
 @Table(name = "INGREDIENTS")
 public class Ingredient implements Serializable {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Integer key = null;
 	private String name = null;
@@ -61,10 +57,4 @@ public class Ingredient implements Serializable {
 	public void setRecipes(Set<Recipe> recipes) {
 		this.recipes = recipes;
 	}
-	
-	
-	
-	
-	
-	
 }
