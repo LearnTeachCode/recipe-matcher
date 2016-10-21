@@ -17,19 +17,4 @@ public class Recipe {
     private String description;         // description of the recipe
     private List<String> instructions;  // list of instructions
 
-
-    // methods
-
-    /*
-     * Sorts the ingredients inputted by the user
-     * Input: Ingredient[] ingredients
-     * Output: Ingredient[] ingredients // FIXME: change later
-     * Side effects: none
-     */
-    public Ingredient[] sortIngredients(Ingredient[] ingredients) {
-
-        return ingredients; // FIXME: change later
-    }
-
-
 }
