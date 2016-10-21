@@ -1,6 +1,8 @@
 package devApp.entity.recipe.model;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -33,9 +35,17 @@ public class Recipe implements Serializable{
 	private Integer key = null;                    // ? - don't remember what this was for...
     private String name = null;                // name of the recipe
     private Set<Ingredient> ingredients = new HashSet<Ingredient>();   // an array of ingredients
-    private String description = null;         // description of the recipe
-   // private List<String> instructions;  // list of instructions
+	private String description = null;         // description of the recipe
+    private List<String> instructions = new ArrayList<String>();  // list of instructions
 	
+    public List<String> getInstructions() {
+		return instructions;
+	}
+
+	public void setInstructions(List<String> instructions) {
+		this.instructions = instructions;
+	}
+    
     @Id
     @GeneratedValue
     @Column(name = "RECIPE_ID")
