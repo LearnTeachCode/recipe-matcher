@@ -1,4 +1,8 @@
+package devApp.entity.recipe.model.src;
+
 import java.util.List;
+
+import devApp.entity.recipe.model.Ingredient;
 
 /**
  * Created by jonchin on 10/12/16.
