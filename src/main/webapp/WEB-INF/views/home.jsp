@@ -10,5 +10,7 @@
     <h3>Hi User</h3>
 </security:authorize>
 
+<h1>hi!</h1>
+
 </body>
 </html>
