@@ -38,6 +38,10 @@ public class Recipe implements Serializable{
 	private String description = null;         // description of the recipe
     private List<String> instructions = new ArrayList<String>();  // list of instructions
 	
+    // FIXME: not sure if annotation below is correct
+    @ElementCollection
+    @CollectionTable(name="INSTRUCTIONS", joinColumns=@JoinColumn(name="user_id"))
+    @Column(name="nickname")
     public List<String> getInstructions() {
 		return instructions;
 	}
