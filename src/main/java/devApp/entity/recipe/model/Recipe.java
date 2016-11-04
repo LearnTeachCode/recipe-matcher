@@ -19,35 +19,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
-/**
- * Created by jonchin on 10/12/16.
- *
- * Recipe Class:
- * - Contains data for 1 recipe, including the name, a list of ingredients, the
- *   description of the recipe, and a list of instructions
- */
 @Entity
 @Table(name = "RECIPES")
 public class Recipe implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private Integer key = null;                    // ? - don't remember what this was for...
-    private String name = null;                // name of the recipe
-    private Set<Ingredient> ingredients = new HashSet<Ingredient>();   // an array of ingredients
-	private String description = null;         // description of the recipe
+	private Integer key = null;                   
+    private String name = null;               
+    private Set<Ingredient> ingredients = new HashSet<Ingredient>(); // an array of ingredients
+	private String description = null; // description of the recipe
     private List<String> instructions = new ArrayList<String>();  // list of instructions
-	
-    // FIXME: not sure if annotation below is correct
-    @ElementCollection
-    @CollectionTable(name="INSTRUCTIONS", joinColumns=@JoinColumn(name="user_id"))
-    @Column(name="nickname")
-    public List<String> getInstructions() {
-		return instructions;
-	}
-
-	public void setInstructions(List<String> instructions) {
-		this.instructions = instructions;
-	}
     
     @Id
     @GeneratedValue
@@ -77,6 +58,16 @@ public class Recipe implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+    @ElementCollection
+    @CollectionTable(name="INSTRUCTIONS", joinColumns=@JoinColumn(name="instruction_id"))
+    public List<String> getInstructions() {
+		return instructions;
+	}
+
+	public void setInstructions(List<String> instructions) {
+		this.instructions = instructions;
+	}
 
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -92,15 +83,5 @@ public class Recipe implements Serializable{
 		this.ingredients = ingredients;
 	}
 	
-	/*
-	//special annotation
-	public List<String> getInstructions() {
-		return instructions;
-	}
-	
-	public void setInstructions(List<String> instructions) {
-		this.instructions = instructions;
-	}
-    */
 
 }
