@@ -26,9 +26,9 @@ public class Recipe implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer key = null;                   
     private String name = null;               
-    private Set<Ingredient> ingredients = new HashSet<Ingredient>(); // an array of ingredients
+   // private Set<Ingredient> ingredients = new HashSet<Ingredient>(); // an array of ingredients
 	private String description = null; // description of the recipe
-    private List<String> instructions = new ArrayList<String>();  // list of instructions
+   // private List<String> instructions = new ArrayList<String>();  // list of instructions
     
     @Id
     @GeneratedValue
@@ -59,6 +59,7 @@ public class Recipe implements Serializable{
 		this.description = description;
 	}
 	
+	/*
     @ElementCollection
     @CollectionTable(name="INSTRUCTIONS", joinColumns=@JoinColumn(name="instruction_id"))
     public List<String> getInstructions() {
@@ -82,6 +83,7 @@ public class Recipe implements Serializable{
 	public void setIngredients(Set<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
+	*/
 	
 
 }

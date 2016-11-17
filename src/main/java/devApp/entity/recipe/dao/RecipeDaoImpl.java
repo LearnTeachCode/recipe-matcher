@@ -46,12 +46,12 @@ public class RecipeDaoImpl extends GenericSimpleAbstractDao<Recipe> implements R
      * Read
      */
     @Override
-    public List<Recipe> getAll() {
+    public List getAll() {
         final Session session =
                 this.getSessionFactory().getCurrentSession();
-        final Criteria criteria =
-                session.createCriteria(this.getEntityClass());
-        return criteria.list();
+        Criteria crit =
+                session.createCriteria(Recipe.class);
+        return crit.list();
     }
     
     /**

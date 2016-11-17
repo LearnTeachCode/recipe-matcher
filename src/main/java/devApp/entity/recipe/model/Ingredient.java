@@ -20,7 +20,7 @@ public class Ingredient implements Serializable {
 	private Integer key = null;
 	private String name = null;
 	private String description = null;
-	private Set<Recipe> recipes = new HashSet<Recipe>();
+	//private Set<Recipe> recipes = new HashSet<Recipe>();
 	//private List<IngredientDetail> ingredients;
 	
 	@Id
@@ -50,6 +50,7 @@ public class Ingredient implements Serializable {
 		this.description = description;
 	}
 
+	/*
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ingredients")
 	public Set<Recipe> getRecipes() {
 		return recipes;
@@ -57,4 +58,6 @@ public class Ingredient implements Serializable {
 	public void setRecipes(Set<Recipe> recipes) {
 		this.recipes = recipes;
 	}
+	
+	*/
 }

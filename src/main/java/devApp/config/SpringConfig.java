@@ -11,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import devApp.entity.recipe.dao.RecipeDao;
+import devApp.entity.recipe.dao.RecipeDaoImpl;
 import devApp.entity.user.dao.WebUserDao;
 import devApp.entity.user.dao.WebUserDaoImpl;
 
@@ -50,6 +52,12 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     @Autowired
     public WebUserDao getWebUserDao(SessionFactory sessionFactory) {
         return new WebUserDaoImpl(sessionFactory);
+    }
+    
+    @Bean
+    @Autowired
+    public RecipeDao getRecipeDao(SessionFactory sessionFactory){
+    	return new RecipeDaoImpl(sessionFactory);
     }
 
     @Override
