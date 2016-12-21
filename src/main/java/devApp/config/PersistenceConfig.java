@@ -25,7 +25,7 @@ public class PersistenceConfig {
    @Autowired
    private Environment env;
  
-   @Bean
+   @Bean(name="sessionFactory")
    public LocalSessionFactoryBean sessionFactory() {
       final LocalSessionFactoryBean sessionFactory =
               new LocalSessionFactoryBean();
