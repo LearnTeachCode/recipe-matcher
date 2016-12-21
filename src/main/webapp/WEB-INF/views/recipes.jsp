@@ -70,6 +70,7 @@
 			<c:forEach items="${recipeList}" var="recipe">
 				<tr>
 					<td>${recipe.id}</td>
+					<td><a href="/recipedata/${recipe.id}">${recipe.name}</a></td>
 					<td>${recipe.description}</td>
 					<td><a href="<c:url value='/edit/${recipe.id}'/>">Edit</a></td>
 					<td><a href="/remove/${recipe.id}">Delete</a></td>
