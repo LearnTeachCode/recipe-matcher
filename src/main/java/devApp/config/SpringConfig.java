@@ -1,6 +1,7 @@
 package devApp.config;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -12,8 +13,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import devApp.entity.recipe.dao.RecipeDao;
 import devApp.entity.recipe.dao.RecipeDaoImpl;
-import devApp.entity.recipe.service.RecipeService;
-import devApp.entity.recipe.service.RecipeServiceImpl;
 import devApp.entity.user.dao.WebUserDao;
 import devApp.entity.user.dao.WebUserDaoImpl;
 
@@ -50,20 +49,16 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
+    @Autowired
     public WebUserDao getWebUserDao(SessionFactory sessionFactory) {
         return new WebUserDaoImpl(sessionFactory);
     }
     
-    @Bean(name="recipeDao")
-    public RecipeDao getRecipeDao(){
-    	return new RecipeDaoImpl();
+    @Bean
+    @Autowired
+    public RecipeDao getRecipeDao(SessionFactory sessionFactory){
+    	return new RecipeDaoImpl(sessionFactory);
     }
-    
-    @Bean(name="recipeService")
-    public RecipeService getRecipeService(){
-    	return new RecipeServiceImpl();
-    }
-
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {

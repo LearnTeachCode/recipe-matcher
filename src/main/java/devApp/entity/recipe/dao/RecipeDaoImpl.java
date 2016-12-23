@@ -2,63 +2,71 @@ package devApp.entity.recipe.dao;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
+import org.hibernate.criterion.Restrictions;
 
+import devApp.data.GenericSimpleAbstractDao;
 import devApp.entity.recipe.model.Recipe;
 
-@Repository
-public class RecipeDaoImpl implements RecipeDao{
+public class RecipeDaoImpl extends GenericSimpleAbstractDao<Recipe> implements RecipeDao{
+
+	private static final Log LOG = LogFactory.getLog(RecipeDaoImpl.class);
 	
-	private SessionFactory sessionFactory;
+	@Override
+	public Class<Recipe> getEntityClass() {
+		return Recipe.class;
+	}
 	
-	@Autowired
-	@Qualifier("sessionFactory")
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+    public RecipeDaoImpl(SessionFactory sessionFactory) {
+        this.setSessionFactory(sessionFactory);
+    }
+    
+    /**
+     * Create 
+     * 
+     * Update
+     */
+    @Override
+    public Recipe saveOrUpdate(Recipe recipe) {
+        try {
+            return this.save(recipe);
+        } catch (Exception e) {
+            if (LOG.isErrorEnabled()) {
+                LOG.error(e.getMessage(), e);
+            }
+            return null;
+        }
+    }
+    
+    /**
+     * Read
+     */
+    @Override
+    public List getAll() {
+        final Session session =
+                this.getSessionFactory().getCurrentSession();
+        Criteria crit =
+                session.createCriteria(Recipe.class);
+        return crit.list();
+    }
+    
+    /**
+     * Delete
+     */
+    public void delete(Integer key) {
+    	
+    	final Session session =
+                this.getSessionFactory().getCurrentSession();
+    	
+    	Recipe recipe = (Recipe ) session.createCriteria(Recipe.class)
+                .add(Restrictions.eq("key", key)).uniqueResult();
+    	session.delete(recipe);
 
-	@Override
-	public void add(Recipe recipe) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(recipe);
-	}
+    }
 
-	@Override
-	public void update(Recipe recipe) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.update(recipe);
-	}
-
-	@Override
-	@SuppressWarnings("unchecked")
-	public List<Recipe> listRecipes() {
-		Session session = this.sessionFactory.getCurrentSession();		
-		List<Recipe> recipeList = session.createQuery("from Recipe").list();
-		//session.createCriteria(Recipe.class).list()
-		
-		return recipeList;
-	}
-
-	@Override
-	public void delete(int id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Recipe recipe = (Recipe) session.load(Recipe.class, new Integer(id));
-		
-		if(recipe!=null){
-			session.delete(recipe);
-		}
-	}
-
-	@Override
-	public Recipe getRecipeById(int id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Recipe recipe = (Recipe) session.load(Recipe.class, new Integer(id));
-		
-		return recipe;
-	}
 	
 }
