@@ -13,8 +13,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import devApp.entity.recipe.dao.RecipeDao;
 import devApp.entity.recipe.dao.RecipeDaoImpl;
+import devApp.entity.recipe.service.RecipeService;
+import devApp.entity.recipe.service.RecipeServiceImpl;
 import devApp.entity.user.dao.WebUserDao;
 import devApp.entity.user.dao.WebUserDaoImpl;
+import devApp.helpers.AppHelper;
 
 @Configuration
 @EnableWebMvc
@@ -54,12 +57,21 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         return new WebUserDaoImpl(sessionFactory);
     }
     
-    @Bean
-    @Autowired
-    public RecipeDao getRecipeDao(SessionFactory sessionFactory){
-    	return new RecipeDaoImpl(sessionFactory);
+    @Bean(name="recipeDao")
+    public RecipeDao getRecipeDao(){
+    	return new RecipeDaoImpl();
+    }
+    
+    @Bean(name="recipeService")
+    public RecipeService getRecipeService(){
+    	return new RecipeServiceImpl();
     }
 
+    @Bean(name="appHelper")
+    public AppHelper getAppHelper(){
+    	return new AppHelper();
+    }
+    
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();

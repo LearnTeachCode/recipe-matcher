@@ -2,20 +2,18 @@ package devApp.entity.recipe.dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Repository;
-
 import devApp.entity.recipe.model.Recipe;
 
-@Repository
-@Transactional
 public interface RecipeDao {
 
-	Recipe saveOrUpdate(Recipe recipe);
+	public void addRecipe(Recipe recipe);
 	
-	List<Recipe> getAll();
-
-	void delete(Integer key);
+	public void updateRecipe(Recipe recipe);
+	
+	public void delteRecipe(int id);
+	
+	public Recipe getRecipeById(int id);
+	
+	public List<Recipe> listRecipes();
 
 }
