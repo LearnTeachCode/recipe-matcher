@@ -1,7 +1,7 @@
 function setRecipeData(recipejson){
 
-	$('#trecipedata').append('<tr><th width="80">ID</th><th width="120">Name</th><th width="120">Description</th></tr>');
-
+	$('#trecipedata').append('<thead><tr><th data-field="id">ID</th><th data-field="name">Name</th><th data-field="desc">Description</th></tr></thead><tbody></tbody>');
+	
 	$('#trecipedata').append('<tr><td>'+recipejson[0].key+'</td>'
 			+'<td>'+recipejson[0].name+'</td>'
 			+'<td>'+recipejson[0].description+'</td>'

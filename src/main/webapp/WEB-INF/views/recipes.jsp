@@ -7,54 +7,60 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Home</title>
 
-	<link rel="stylesheet" href="../../css/custom.css">
+	<link rel="stylesheet" href="../../css/materialize/materialize.min.css">
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
     
 <body>
+	<nav>
+	   <div class="nav-wrapper">
+	      <a href="/recipes" class="brand-logo">&nbsp;Recipes</a>
+	   </div>
+	</nav>
 	
-	<h1>Recipe list</h1>
-
-	<table id="trecipes" class="tg"></table>
-
 	<br/>
-	<form:form action="recipe/add" commandName="recipe">
-	    <table> 
-	        <tr id="row-id" class="hidden">
-	            <td>
-	                <label>ID</label>
-	            </td>
-	            <td>
-	                <input id="key" type="text" name="key" readonly disabled /> 
-	                <input id="hidden-key" type="hidden" name="key" disabled /> 
-	            </td>
-	        </tr> 
-	        <tr>
-	            <td>
-	                <label>Name</label>
-	            </td>
-	            <td>
-	                <input type="text" name="name" /> 
-	            </td>
-	        </tr>
-	        <tr>
-	            <td>
-	                <label>Description</label>
-	            </td>
-	            <td>
-	                <textarea id="descr" name="description"></textarea>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td colspan="2">
-	                <input id="submit-btn" type="submit" value="Add Recipe" />
-	            </td>
-	        </tr>
-	    </table>
-	</form:form>
-
+	<div class="row">
+		<div class="col s7">
+			<table id="trecipes" class="striped"></table>
+		</div>
+	</div>
+	
+	<br/><br/>
+	<div class="row">
+		<form:form class="col s12" action="recipe/add" commandName="recipe">
+		    <div class="row">
+			    <div id="row-id" class="row hide">
+			        <div class="input-field col s3">			            
+			            <label for="key">ID</label>
+			            
+			            <input id="key" type="text" name="key" readonly disabled /> 
+		                <input id="hidden-key" type="hidden" name="key" disabled /> 			          
+			        </div>
+			    </div>
+			    <div class="row">
+			        <div class="input-field col s3">
+			          	<label for="name">Name</label>
+						<input type="text" name="name" /> 
+			        </div>
+			    </div>
+			    <div class="row">
+			        <div class="input-field col s3">
+			          	<label for="descr">Description</label>
+						<textarea id="descr" class="materialize-textarea" name="description"></textarea>
+			        </div>
+			    </div>			    
+			    <div class="row">
+				    <button id="submit-btn" class="btn waves-effect waves-light" type="submit">Add Recipe
+					    <i class="material-icons right">send</i>
+					</button>
+			    </div>
+			</div>
+		</form:form>
+	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="../../js/materialize/materialize.min.js"></script>
 	<script src="../../js/recipe.js"></script>
 	
 	<script>

@@ -7,19 +7,24 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Recipe Data</title>
 
-	<link rel="stylesheet" href="../../css/custom.css">
+	<link rel="stylesheet" href="../../css/materialize/materialize.min.css">
 </head>
 
-    
 <body>
-	<h1>Recipe Details</h1>
-	
-	<table id="trecipedata" class="tg"></table>
+	<nav>
+	   <div class="nav-wrapper">
+	      <a href="/recipes" class="brand-logo">&nbsp;Recipes</a>
+	   </div>
+	</nav>
 	
 	<br/>
-	<a href="/recipes">Back</a>
+	<div class="row">
+		<div class="col s6">
+			<table id="trecipedata" class="bordered highlight"></table>
+		</div>
+	</div>
 	
-
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="../../js/recipedata.js"></script>
 	
