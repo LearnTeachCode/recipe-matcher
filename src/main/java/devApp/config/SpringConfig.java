@@ -11,10 +11,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import devApp.entity.recipe.dao.RecipeDao;
-import devApp.entity.recipe.dao.RecipeDaoImpl;
-import devApp.entity.recipe.service.RecipeService;
-import devApp.entity.recipe.service.RecipeServiceImpl;
 import devApp.entity.user.dao.WebUserDao;
 import devApp.entity.user.dao.WebUserDaoImpl;
 import devApp.helpers.AppHelper;
@@ -56,16 +52,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     public WebUserDao getWebUserDao(SessionFactory sessionFactory) {
         return new WebUserDaoImpl(sessionFactory);
     }
-    
-    @Bean(name="recipeDao")
-    public RecipeDao getRecipeDao(){
-    	return new RecipeDaoImpl();
-    }
-    
-    @Bean(name="recipeService")
-    public RecipeService getRecipeService(){
-    	return new RecipeServiceImpl();
-    }
+
 
     @Bean(name="appHelper")
     public AppHelper getAppHelper(){
@@ -76,4 +63,5 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+    
 }

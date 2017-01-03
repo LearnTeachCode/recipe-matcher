@@ -39,11 +39,7 @@ public class RecipeController {
 	
 	@RequestMapping(value={"/add"})
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe){
-		if(recipe.getKey()==0){
-			this.recipeService.addRecipe(recipe);
-		} else {
-			this.recipeService.updateRecipe(recipe);
-		}
+		this.recipeService.saveRecipe(recipe);
 		
 		return "redirect:/recipes";
 	}

@@ -5,53 +5,40 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import devApp.entity.recipe.dao.RecipeDao;
 import devApp.entity.recipe.model.Recipe;
+import devApp.repository.RecipeRepository;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
 
-    @Autowired
-    private RecipeDao recipeDao;
-
-    
-    @Autowired
-    @Qualifier(value="recipeDao")
-	public void setRecipeDao(RecipeDao recipeDao) {
-		this.recipeDao = recipeDao;
-	}
+	@Autowired
+	private RecipeRepository recipeRepository;
 
 	@Override
 	@Transactional
-	public void addRecipe(Recipe recipe) {
-		this.recipeDao.addRecipe(recipe);
+	public void saveRecipe(Recipe recipe) {
+		this.recipeRepository.save(recipe);
 	}
 
-	@Override
-	@Transactional
-	public void updateRecipe(Recipe recipe) {
-		this.recipeDao.updateRecipe(recipe);
-	}
 
 	@Override
 	@Transactional
 	public void deleteRecipe(int id) {
-		this.recipeDao.delteRecipe(id);
+		this.recipeRepository.delete(id);
 	}
 
 	@Override
 	@Transactional
 	public Recipe getRecipeById(int id) {
-		return this.recipeDao.getRecipeById(id);
+		return this.recipeRepository.findOne(id);
 	}
 
 	@Override
 	@Transactional
 	public List<Recipe> listRecipes() {
-		return this.recipeDao.listRecipes();
+		return (List<Recipe>) this.recipeRepository.findAll();
 	}
 	
 }
