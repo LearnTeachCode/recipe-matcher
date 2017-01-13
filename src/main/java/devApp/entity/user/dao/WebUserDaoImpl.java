@@ -1,15 +1,16 @@
 package devApp.entity.user.dao;
 
-import devApp.data.GenericSimpleAbstractDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
+import devApp.data.GenericSimpleAbstractDao;
 import devApp.entity.user.model.WebUser;
 
+@Repository
 public class WebUserDaoImpl extends GenericSimpleAbstractDao<WebUser> implements WebUserDao {
 
     private static final Log LOG = LogFactory.getLog(WebUserDaoImpl.class);
@@ -19,31 +20,23 @@ public class WebUserDaoImpl extends GenericSimpleAbstractDao<WebUser> implements
         return WebUser.class;
     }
 
+    /*
     public WebUserDaoImpl(SessionFactory sessionFactory) {
         this.setSessionFactory(sessionFactory);
     }
+    */
 
     @Override
-    public WebUser load(Number key) {
-        try {
-            return this.get(key.longValue());
+    public WebUser load(Long key) {
+    	System.out.println("Dao imp: load(long key)");
+    	try {
+            return this.get(key);
         } catch (Exception e) {
             if (LOG.isErrorEnabled()) {
                 LOG.error(e.getMessage(), e);
             }
             return null;
         }
-    }
-
-    @Override
-    public WebUser loadByUserName(String userName) {
-        final Session session =
-                this.getSessionFactory().getCurrentSession();
-        final Criteria criteria =
-                session.createCriteria(WebUser.class);
-        criteria.add(Restrictions.eq("userName", userName));
-        // USER_NAME is unique, so only 1 should return
-        return (WebUser) criteria.uniqueResult();
     }
 
     @Override
@@ -57,4 +50,14 @@ public class WebUserDaoImpl extends GenericSimpleAbstractDao<WebUser> implements
             return null;
         }
     }
+
+	@Override
+	public WebUser loadByUsername(String username) {
+		final Session session = this.getSessionFactory().getCurrentSession();
+        final Criteria criteria = session.createCriteria(WebUser.class);
+        criteria.add(Restrictions.eq("username", username));
+        // USER_NAME is unique, so only 1 should return
+        return (WebUser) criteria.uniqueResult();
+	}
+
 }

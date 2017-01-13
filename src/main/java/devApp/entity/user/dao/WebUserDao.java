@@ -15,14 +15,14 @@ public interface WebUserDao {
      * @param key key of the WebUser.
      * @return WebUser of the key, null otherwise.
      */
-    WebUser load(Number key);
+    WebUser load(Long key);
 
     /**
      * Load WebUser by its user name.
      * @param userName find this user name.
      * @return WebUser with given user name, null otherwise.
      */
-    WebUser loadByUserName(String userName);
+    WebUser loadByUsername(String username);
 
     /**
      * Merge given WebUser.

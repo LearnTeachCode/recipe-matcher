@@ -9,14 +9,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Proxy;
 import org.springframework.security.core.GrantedAuthority;
 
 import devApp.security.util.BaseUserSecurityUtil;
 import devApp.security.util.SecurityRoleType;
 
 @Entity
+@Proxy(lazy=false)
 @Table(name = "WEB_USER")
-@SuppressWarnings("unused")
 public class WebUser extends User {
 
     private static final long serialVersionUID = 1L;
@@ -91,7 +92,7 @@ public class WebUser extends User {
         sb.append(", fullName='").append(fullName).append('\'');
         sb.append(", email='").append(email).append('\'');
         sb.append(", ipAddress='").append(ipAddress).append('\'');
-        sb.append(", userName='").append(this.getUserName()).append('\'');
+        sb.append(", userName='").append(this.getUsername()).append('\'');
         sb.append(", password='").append(this.getPassword()).append('\'');
         sb.append(", id='").append(this.getId()).append('\'');
         sb.append('}');
@@ -110,7 +111,7 @@ public class WebUser extends User {
     @Override
     @Transient
     public String getUsername() {
-        return this.getEmail();
+        return super.getUsername();
     }
 
     @Override

@@ -1,9 +1,8 @@
 package devApp.config;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -11,8 +10,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import devApp.entity.user.dao.WebUserDao;
-import devApp.entity.user.dao.WebUserDaoImpl;
 import devApp.helpers.AppHelper;
 
 @Configuration
@@ -47,12 +44,13 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
                 .setCachePeriod(defaultCachePeriod);
     }
 
+    /*
     @Bean
     @Autowired
     public WebUserDao getWebUserDao(SessionFactory sessionFactory) {
         return new WebUserDaoImpl(sessionFactory);
     }
-
+	*/
 
     @Bean(name="appHelper")
     public AppHelper getAppHelper(){
@@ -64,4 +62,8 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
     
+    @Bean 
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }

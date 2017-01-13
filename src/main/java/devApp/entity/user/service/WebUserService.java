@@ -14,14 +14,14 @@ public interface WebUserService extends UserDetailsService {
      * @param key key of the WebUser.
      * @return WebUser of the key, null otherwise.
      */
-    WebUser load(Number key);
+    WebUser load(Long key);
 
     /**
      * Load WebUser by its user name.
      * @param userName find this user name.
      * @return WebUser with given user name, null otherwise.
      */
-    WebUser findByUserName(String userName);
+    WebUser findByUsername(String username);
 
     /**
      * Merge given WebUser.
@@ -29,4 +29,10 @@ public interface WebUserService extends UserDetailsService {
      * @return merged user.
      */
     WebUser saveOrUpdate(WebUser user);
+    
+    /**
+     * Add given WebUser.
+     * @param WebUser add new WebUser.
+     */
+    void addWebUser(WebUser webUser);
 }

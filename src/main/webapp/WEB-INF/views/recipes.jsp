@@ -13,11 +13,7 @@
 
     
 <body>
-	<nav>
-	   <div class="nav-wrapper">
-	      <a href="/recipes" class="brand-logo">&nbsp;Recipes</a>
-	   </div>
-	</nav>
+	<jsp:include page="navbar.jsp" />
 	
 	<br/>
 	<div class="row">
