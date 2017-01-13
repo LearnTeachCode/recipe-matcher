@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import devApp.entity.recipe.dao.RecipeRepository;
 import devApp.entity.recipe.model.Recipe;
-import devApp.repository.RecipeRepository;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
