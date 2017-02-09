@@ -1,5 +1,7 @@
 package devApp.entity.user.dao;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
@@ -58,6 +60,11 @@ public class WebUserDaoImpl extends GenericSimpleAbstractDao<WebUser> implements
         criteria.add(Restrictions.eq("username", username));
         // USER_NAME is unique, so only 1 should return
         return (WebUser) criteria.uniqueResult();
+	}
+
+	@Override
+	public List<WebUser> getAllWebUsers() {		
+		return this.getAll();
 	}
 
 }

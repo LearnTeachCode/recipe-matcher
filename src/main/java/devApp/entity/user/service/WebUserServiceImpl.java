@@ -1,5 +1,7 @@
 package devApp.entity.user.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
@@ -141,4 +143,12 @@ public class WebUserServiceImpl implements WebUserService  {
 		
 		this.webUserDao.saveOrUpdate(webUser);
 	}
+
+	@Override
+	@Transactional
+	public List<WebUser> getAllWebUsers() {
+		return this.webUserDao.getAllWebUsers();
+	}
+
+
 }

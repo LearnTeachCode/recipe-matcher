@@ -1,5 +1,7 @@
 package devApp.entity.user.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -30,4 +32,10 @@ public interface WebUserDao {
      * @return merged user.
      */
     WebUser saveOrUpdate(WebUser user);
+    
+    /**
+     * Load all WebUsers.
+     * @return List of all WebUsers.
+     */      
+    List<WebUser> getAllWebUsers();
 }

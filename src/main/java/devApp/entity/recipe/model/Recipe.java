@@ -1,8 +1,23 @@
 package devApp.entity.recipe.model;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.Proxy;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "RECIPES")
@@ -21,9 +36,14 @@ public class Recipe implements Serializable{
     
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
-	// private Set<Ingredient> ingredients = new HashSet<Ingredient>(); // an array of ingredients	
-    // private List<String> instructions = new ArrayList<String>();  // list of instructions
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)	
+	@JoinTable(name = "Recipes_Ingredients", 
+		joinColumns = { @JoinColumn(name = "RECIPE_ID", nullable = false, updatable = false) }, 
+		inverseJoinColumns = { @JoinColumn(name = "INGREDIENT_ID", nullable = false, updatable = false) })
+	@JsonBackReference
+	private Set<Ingredient> ingredients = new HashSet<Ingredient>(); // an array of ingredients	
+    //private List<String> instructions = new ArrayList<String>();  // list of instructions
     
     
     public int getKey() {
@@ -53,7 +73,8 @@ public class Recipe implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Recipe [key=" + key + ", name=" + name + ", description=" + description + "]";
+		return "Recipe [key=" + key + ", name=" + name + ", description=" + description + ", ingredients=" + ingredients
+				+ "]";
 	}
 	
 	/*
@@ -66,13 +87,8 @@ public class Recipe implements Serializable{
 	public void setInstructions(List<String> instructions) {
 		this.instructions = instructions;
 	}
+	*/
 
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "Recipes_Ingredients", joinColumns = {
-			@JoinColumn(name = "RECIPE_ID", nullable = false, updatable = false) },
-			inverseJoinColumns = { @JoinColumn(name = "INGREDIENT_ID",
-					nullable = false, updatable = false) })
 	public Set<Ingredient> getIngredients() {
 		return ingredients;
 	}
@@ -80,7 +96,4 @@ public class Recipe implements Serializable{
 	public void setIngredients(Set<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
-	*/
-	
-
 }

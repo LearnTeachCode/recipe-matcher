@@ -9,11 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     @RequestMapping(value="/recipes", method=RequestMethod.GET)
-    public ModelAndView ModelAndView(){
+    public ModelAndView recipes(){
     	return new ModelAndView("recipes");
     }
-	
-	
+    
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView getHome() {
         return new ModelAndView("home");

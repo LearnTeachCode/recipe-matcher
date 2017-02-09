@@ -46,6 +46,7 @@
         </div>
       </div>
       <a href="/registration">Create account</a>
+      <a href="/match">&nbsp;&nbsp;&nbsp;&nbsp;Match Recipe</a>
 	</div>
 
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

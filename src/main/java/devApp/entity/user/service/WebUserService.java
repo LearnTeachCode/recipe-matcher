@@ -1,5 +1,7 @@
 package devApp.entity.user.service;
 
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -35,4 +37,10 @@ public interface WebUserService extends UserDetailsService {
      * @param WebUser add new WebUser.
      */
     void addWebUser(WebUser webUser);
+    
+    /**
+     * Load all WebUsers.
+     * @return List of all WebUsers.
+     */    
+    List<WebUser> getAllWebUsers();
 }

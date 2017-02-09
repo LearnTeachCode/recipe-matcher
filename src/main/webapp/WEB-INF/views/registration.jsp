@@ -57,6 +57,9 @@
             </div>
           </form:form>
         </div>
+        <div class="lg-wrapper">
+        	<a href="/login">Login to existing account</a>
+        </div>
       </div>
 	</div>
 

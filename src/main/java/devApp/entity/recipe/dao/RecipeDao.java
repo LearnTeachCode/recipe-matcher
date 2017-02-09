@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import devApp.entity.recipe.model.Recipe;
 
 @Repository
-public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
+public interface RecipeDao extends CrudRepository<Recipe, Integer> {
 	
 }
