@@ -20,12 +20,20 @@ updateIngLabels = function(){
 }
 
 function setRecipesData(matchedList){	
+	//console.log(matchedList);
+	
 	if(matchedList!="") {
-		$('#trecipedata').append('<thead><tr><th data-field="id">ID</th><th data-field="name">Name</th><th data-field="desc">Description</th></tr></thead><tbody></tbody>');
+		$('#trecipedata').append('<thead><tr><th data-field="name">Name</th><th data-field="ingredients">Ingredients</th><th data-field="desc">Description</th></tr></thead><tbody></tbody>');
 		
 		$.each(matchedList, function(key, val){	
-			$('#trecipedata').append('<tr><td>'+val.key+'</td>'
-					+'<td>'+val.name+'</td>'
+			var ings = "";
+
+			for(var i=0; i<val.ingredients.length; i++){
+				ings+= val.ingredients[i].name+",  ";
+			}
+
+			$('#trecipedata').append('<tr><td>'+val.name+'</td>'
+					+'<td>'+ings.substring(0, ings.length-3)+'</td>'
 					+'<td>'+val.description+'</td>'
 					+'</tr>');	
 		});

@@ -17,11 +17,14 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
 
 @Entity
 @Table(name = "RECIPES")
 @Proxy(lazy=false)
+@JsonIdentityInfo(generator = PropertyGenerator.class, property = "key")
 public class Recipe implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +44,7 @@ public class Recipe implements Serializable{
 	@JoinTable(name = "Recipes_Ingredients", 
 		joinColumns = { @JoinColumn(name = "RECIPE_ID", nullable = false, updatable = false) }, 
 		inverseJoinColumns = { @JoinColumn(name = "INGREDIENT_ID", nullable = false, updatable = false) })
-	@JsonBackReference
+	@JsonManagedReference 
 	private Set<Ingredient> ingredients = new HashSet<Ingredient>(); // an array of ingredients	
     //private List<String> instructions = new ArrayList<String>();  // list of instructions
     

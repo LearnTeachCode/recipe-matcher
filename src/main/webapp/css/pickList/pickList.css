@@ -1,0 +1,20 @@
+.pickListButtons {
+  padding: 10px;
+  text-align: center;
+}
+
+.pickListButtons button {
+  margin-bottom: 20px;
+}
+
+.pickListSelect {
+  height: 200px !important;
+}
+
+.col .s5 {
+	padding-left: 0px;
+}
+
+.pRemoveAll {
+	display: none;
+}

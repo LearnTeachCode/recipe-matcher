@@ -39,6 +39,10 @@ public class RecipeController {
 	
 	@RequestMapping(value={"/add"})
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe){
+		if(recipe.getKey()!=0){
+			recipe.setIngredients(this.recipeService.getRecipeById(recipe.getKey()).getIngredients());
+		}
+		
 		this.recipeService.saveRecipe(recipe);
 		
 		return "redirect:/recipes";
