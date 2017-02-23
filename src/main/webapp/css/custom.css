@@ -18,3 +18,11 @@
 	color: #f75151;
 	font-style: italic;
 }
+.editable{
+	border-bottom: dashed 1px #0088cc;
+}
+.select-role{
+	display: block !important;
+	height: 35px;
+    width: 95px;
+}

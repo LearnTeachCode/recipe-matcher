@@ -7,7 +7,7 @@
 
 <!-- Admin manage dropdown items -->
 <ul id="dropdown2" class="dropdown-content">
-  <li><a href="/manage/ingredients">Users</a></li>
+  <li><a href="/manage/webusers">Users</a></li>
   <li><a href="/manage/recipes-ingredients">Rec-Ings</a></li>
   <li><a href="/manage/ingredients">Ingredients</a></li>
 </ul>	

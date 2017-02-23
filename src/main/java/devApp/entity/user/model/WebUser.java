@@ -80,6 +80,10 @@ public class WebUser extends User {
         this.securityRoleType = securityRoleType;
     }
 
+    public void setSecurityRoleType(String securityRoleName) {
+        this.securityRoleType = SecurityRoleType.valueOf(securityRoleName);
+    }
+    
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
