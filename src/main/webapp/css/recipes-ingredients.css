@@ -1,0 +1,12 @@
+.div-ings {
+	margin-left: 3% !important;
+}
+.pointer{
+	cursor: pointer;
+}
+.selected {
+	background-color: #80bfff !important;
+}
+.input-sumbit {
+	display: none;
+}

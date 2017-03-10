@@ -2,71 +2,74 @@ package devApp.entity.recipe.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import devApp.entity.recipe.dao.RecipeDao;
+import devApp.entity.recipe.model.Ingredient;
 import devApp.entity.recipe.model.Recipe;
 
 @Service
-public class RecipeServiceImpl implements RecipeService{
-	
-    private static final Log LOG = LogFactory.getLog(RecipeServiceImpl.class);
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    
-    @Autowired
-    private RecipeDao recipeDao;
-    
-    public RecipeServiceImpl(){
-    	super();
-    }
+public class RecipeServiceImpl implements RecipeService {
 
-	public RecipeServiceImpl(RecipeDao recipeDao) {
-		this.recipeDao = recipeDao;
+	@Autowired
+	private RecipeDao recipeDao;
+
+	@Override
+	@Transactional
+	public void saveRecipe(Recipe recipe) {
+		this.recipeDao.save(recipe);
 	}
-    
-	public List<Recipe> getAllRecipes(){
-		
-		return recipeDao.getAll();
+
+
+	@Override
+	@Transactional
+	public void deleteRecipe(int id) {
+		this.recipeDao.delete(id);
 	}
-	
-	public String getJsonList(List<Recipe> recipes, Log LOG, String processType){
-		
-		if(LOG.isInfoEnabled()){
-			LOG.info((CollectionUtils.isEmpty(recipes)
-					? "[null/empty]" : recipes.size())
-					+ " " + processType + "loaded");
-		}
-		
-		final List<String> jsonList = new ArrayList<>();
-		
-		for(Recipe r : recipes){
+
+	@Override
+	@Transactional
+	public Recipe getRecipeById(int id) {
+		return this.recipeDao.findOne(id);
+	}
+
+	@Override
+	@Transactional
+	public List<Recipe> listRecipes() {
+		return (List<Recipe>) this.recipeDao.findAll();
+	}
+
+
+	@Override
+	@Transactional
+	public List<Recipe> matchRecipes(Set<String> inputIngredientNamesSet) {
+		List<Recipe> matchedRecipes = new ArrayList<>();
+
+		recipe_loop: for(Recipe exist_recipe : this.listRecipes()){
+			Set<Ingredient> ingredients = exist_recipe.getIngredients();
 			
-			try {
+			if(inputIngredientNamesSet.size() < ingredients.size()*0.8) continue;
+			
+			int notInPercentage = 0;
+			
+			for(Ingredient ing : ingredients){				
+				String s = ing.getName();
 				
-				final String processed = OBJECT_MAPPER.writeValueAsString(r);
-				jsonList.add(processed);
-				
-			} catch (JsonProcessingException e) {
-				
-				if(LOG.isErrorEnabled())
-					LOG.error(e.getMessage());
-				e.printStackTrace();
+				if(!inputIngredientNamesSet.contains(s.toLowerCase())){
+					notInPercentage+=(100/ingredients.size());
+					if(notInPercentage>20) continue recipe_loop;					
+				}
 			}
-			
-			
+
+			matchedRecipes.add(exist_recipe);
 		}
 		
-		return jsonList.toString();
+		return matchedRecipes;
 	}
-    
-    
-
+	
 }
