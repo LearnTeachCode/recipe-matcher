@@ -20,8 +20,6 @@ updateIngLabels = function(){
 }
 
 function setRecipesData(matchedList){	
-	//console.log(matchedList);
-	
 	if(matchedList!="") {
 		$('#trecipedata').append('<thead><tr><th data-field="name">Name</th><th data-field="ingredients">Ingredients</th><th data-field="desc">Description</th></tr></thead><tbody></tbody>');
 		

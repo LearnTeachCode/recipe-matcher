@@ -15,5 +15,5 @@ public interface RecipeService {
 	
 	public List<Recipe> listRecipes();
 	
-	public List<Recipe> matchRecipes(Set<String> inputIngredientNamesSet);
+	public List<Recipe> matchRecipes(Set<String> inputIngredientNamesSet, int percentage);
 }

@@ -47,13 +47,15 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	@Transactional
-	public List<Recipe> matchRecipes(Set<String> inputIngredientNamesSet) {
+	public List<Recipe> matchRecipes(Set<String> inputIngredientNamesSet, int percentage) {
+		if(percentage<50) percentage = 50;
+		
 		List<Recipe> matchedRecipes = new ArrayList<>();
 
 		recipe_loop: for(Recipe exist_recipe : this.listRecipes()){
 			Set<Ingredient> ingredients = exist_recipe.getIngredients();
 			
-			if(inputIngredientNamesSet.size() < ingredients.size()*0.8) continue;
+			if(inputIngredientNamesSet.size() < ingredients.size()*percentage/100) continue;
 			
 			int notInPercentage = 0;
 			
@@ -62,7 +64,7 @@ public class RecipeServiceImpl implements RecipeService {
 				
 				if(!inputIngredientNamesSet.contains(s.toLowerCase())){
 					notInPercentage+=(100/ingredients.size());
-					if(notInPercentage>20) continue recipe_loop;					
+					if(notInPercentage>100-percentage) continue recipe_loop;					
 				}
 			}
 

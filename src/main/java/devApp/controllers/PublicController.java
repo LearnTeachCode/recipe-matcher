@@ -39,10 +39,10 @@ public class PublicController {
     }
     
     @RequestMapping(value={"/match"}, method=RequestMethod.POST)
-    public String matchRecipe(Model model, @RequestParam(value="ingredients[]") String[] ingsArray){
+    public String matchRecipe(Model model, @RequestParam(value="ingredients[]") String[] ingsArray, @RequestParam(value="percentage") int percentage){
     	Set<String> inputIngsSet = new HashSet<String>(Arrays.asList(ingsArray));
-    	
-    	List<Recipe> matchedList = this.recService.matchRecipes(inputIngsSet);    	
+
+    	List<Recipe> matchedList = this.recService.matchRecipes(inputIngsSet, percentage);    	
     	String jsonMatchedRecipes = this.appHelper.getJsonList(matchedList, LOG, "recipes");
 
     	model.addAttribute("matchedList", jsonMatchedRecipes);

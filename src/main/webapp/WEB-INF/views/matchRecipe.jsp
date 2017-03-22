@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../../css/addel/addel.css">
+  <link rel="stylesheet" href="../../css/range/jquery.range.css">
 </head>
 
 <body>
@@ -54,7 +55,15 @@
                 </div>
                 
                 <br/><br/>
+                <div class="form-group">	
+                    <label class="control-label">
+                    	<b>Matching percentage</b>
+                    </label> 
+                                 
+                	<input class="single-slider" name="percentage" type="hidden" value="50"/>
+                </div>
                 
+                <br/><br/>
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit
 				</button>
             </form> 
@@ -77,11 +86,23 @@
 	
   <script src="../../js/addel/addel.jquery.min.js"></script>
   <script src="../../js/matchRecipe.js"></script>
+  <script src="../../js/range/jquery.range.js"></script>
   
   <script type="text/javascript">
 	$(document).ready(function(){
 		var recipesJson = ${matchedList};
 		setRecipesData(recipesJson);
+		
+		$('.single-slider').jRange({
+            from: 50,
+            to: 100,
+            step: 5,
+            scale: [50, 60, 70, 80, 90, 100],
+            format: '%s',
+            width: 300,
+            showLabels: true,
+            snap: true
+        });
 	});
   </script>
   
