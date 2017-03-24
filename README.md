@@ -1,4 +1,4 @@
-A recipe database with ingredient / recipe matching and a recommender algorithm.
+A recipe database with ingredient / recipe matching and a recommender system.
 
 Useful resources for learning about classes and objects:
 - https://www.tutorialspoint.com/java/java_object_classes.htm
