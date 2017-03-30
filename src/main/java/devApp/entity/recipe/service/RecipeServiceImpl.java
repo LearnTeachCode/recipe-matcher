@@ -28,8 +28,8 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	@Transactional
-	public void deleteRecipe(int id) {
-		this.recipeDao.delete(id);
+	public void deleteRecipe(Recipe recipe) {
+		this.recipeDao.delete(recipe);
 	}
 
 	@Override
@@ -55,7 +55,8 @@ public class RecipeServiceImpl implements RecipeService {
 		recipe_loop: for(Recipe exist_recipe : this.listRecipes()){
 			Set<Ingredient> ingredients = exist_recipe.getIngredients();
 			
-			if(inputIngredientNamesSet.size() < ingredients.size()*percentage/100) continue;
+			if(inputIngredientNamesSet.size() < ingredients.size()*percentage/100) 
+				continue;
 			
 			int notInPercentage = 0;
 			
@@ -64,7 +65,8 @@ public class RecipeServiceImpl implements RecipeService {
 				
 				if(!inputIngredientNamesSet.contains(s.toLowerCase())){
 					notInPercentage+=(100/ingredients.size());
-					if(notInPercentage>100-percentage) continue recipe_loop;					
+					if(notInPercentage>100-percentage) 
+						continue recipe_loop;					
 				}
 			}
 

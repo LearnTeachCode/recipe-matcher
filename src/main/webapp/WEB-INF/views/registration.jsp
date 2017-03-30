@@ -37,7 +37,7 @@
 
             <div class="row">
               <div class="input-field col s12 text-left">               
-                <input name="password" type="text" class="validate">
+                <input name="password" type="password" class="validate">
                 <span id="password-error" class="span-field-error"></span>
                 <label for="password">Password</label>
               </div>
@@ -45,7 +45,7 @@
             
             <div class="row">
               <div class="input-field col s12 text-left">      
-                <input name="confirmPassword" type="text" class="validate">
+                <input name="confirmPassword" type="password" class="validate">
                 <span id="confirmPassword-error" class="span-field-error"></span>
                 <label for="password">Confirm your password</label>
               </div>

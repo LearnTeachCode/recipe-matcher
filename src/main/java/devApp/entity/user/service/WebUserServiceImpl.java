@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import devApp.entity.user.dao.WebUserDao;
 import devApp.entity.user.dao.WebUserDaoImpl;
+import devApp.entity.user.model.User;
 import devApp.entity.user.model.WebUser;
 import devApp.security.util.SecurityRoleType;
 
@@ -40,14 +40,14 @@ public class WebUserServiceImpl implements WebUserService  {
     
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {    	
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {    	
     	final WebUser webUser = this.webUserDao.loadByUsername(username);
   
         if (webUser == null) {
             throw new UsernameNotFoundException("Invalid username/password");
         } 
-        
-        return new org.springframework.security.core.userdetails.User(username, webUser.getPassword(), webUser.getAuthorities());
+
+        return webUser;
     }
 
     @Override

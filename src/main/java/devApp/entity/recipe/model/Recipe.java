@@ -39,6 +39,9 @@ public class Recipe implements Serializable{
     
 	@Column(name = "DESCRIPTION")
 	private String description;
+	
+	@Column(name = "OWNER")
+	private Long owner;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)	
 	@JoinTable(name = "Recipes_Ingredients", 
@@ -99,4 +102,14 @@ public class Recipe implements Serializable{
 	public void setIngredients(Set<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
+
+	public Long getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Long long1) {
+		this.owner = long1;
+	}
+	
+	
 }

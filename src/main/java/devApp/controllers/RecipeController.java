@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import devApp.entity.recipe.model.Recipe;
 import devApp.entity.recipe.service.RecipeService;
+import devApp.entity.user.model.WebUser;
 import devApp.helpers.AppHelper;
 
 @Controller
@@ -41,7 +43,11 @@ public class RecipeController {
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe){
 		if(recipe.getKey()!=0){
 			recipe.setIngredients(this.recipeService.getRecipeById(recipe.getKey()).getIngredients());
-		}
+		} 
+		
+		/* Setting recipe owner */
+		WebUser webUser = (WebUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
+		recipe.setOwner(webUser.getId());
 		
 		this.recipeService.saveRecipe(recipe);
 		
@@ -49,9 +55,9 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value={"/remove/{id}"}, method=RequestMethod.GET)
-	public String removeRecipe(@PathVariable("id") int id){
-		this.recipeService.deleteRecipe(id);
-
+	public String removeRecipe(@PathVariable("id") int id){	
+		this.recipeService.deleteRecipe(this.recipeService.getRecipeById(id));
+		
 		return "redirect:/recipes";
 	}
 	
