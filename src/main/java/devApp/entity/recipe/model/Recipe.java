@@ -42,6 +42,10 @@ public class Recipe implements Serializable{
 	
 	@Column(name = "OWNER")
 	private Long owner;
+	
+	@Column(name="ISNEW", nullable = false, columnDefinition = "TINYINT", length = 1)
+	private boolean isNew = true;
+	
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)	
 	@JoinTable(name = "Recipes_Ingredients", 
@@ -110,6 +114,13 @@ public class Recipe implements Serializable{
 	public void setOwner(Long long1) {
 		this.owner = long1;
 	}
-	
+
+	public boolean isIsNew() {
+		return isNew;
+	}
+
+	public void setIsNew(boolean isNew) {
+		this.isNew = isNew;
+	}
 	
 }

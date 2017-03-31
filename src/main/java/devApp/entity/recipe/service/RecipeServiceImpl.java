@@ -41,9 +41,8 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	@Transactional
 	public List<Recipe> listRecipes() {
-		return (List<Recipe>) this.recipeDao.findAll();
+		return (List<Recipe>) this.recipeDao.findAllByOrderByIsNewDescKeyDesc();
 	}
-
 
 	@Override
 	@Transactional

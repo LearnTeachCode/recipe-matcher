@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import devApp.entity.recipe.model.Recipe;
@@ -42,12 +43,16 @@ public class RecipeController {
 	@RequestMapping(value={"/add"})
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe){
 		if(recipe.getKey()!=0){
-			recipe.setIngredients(this.recipeService.getRecipeById(recipe.getKey()).getIngredients());
-		} 
-		
-		/* Setting recipe owner */
-		WebUser webUser = (WebUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
-		recipe.setOwner(webUser.getId());
+			Recipe exRecipe = this.recipeService.getRecipeById(recipe.getKey());
+			
+			recipe.setIngredients(exRecipe.getIngredients());
+			recipe.setOwner(exRecipe.getOwner());
+			recipe.setIsNew(exRecipe.isIsNew());
+		} else {		
+			/* Setting recipe owner */
+			WebUser webUser = (WebUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
+			recipe.setOwner(webUser.getId());
+		}
 		
 		this.recipeService.saveRecipe(recipe);
 		
@@ -78,5 +83,18 @@ public class RecipeController {
 		return "recipedata";
 	}
 	
-
+	
+	@RequestMapping(value={"/makeOld"}, method=RequestMethod.POST, produces={"application/json", "application/text"})
+	@ResponseBody
+	public String makeOld(@RequestParam(value="idArray[]") String[] idArray){
+		for(String recipe_id : idArray){		
+			Recipe recipe = this.recipeService.getRecipeById(Integer.parseInt(recipe_id));
+    		recipe.setIsNew(false);
+    		
+    		this.recipeService.saveRecipe(recipe);
+    	}
+		
+    	return "1";
+    }
+	
 }

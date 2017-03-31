@@ -1,6 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -9,6 +10,7 @@
 
 	<link rel="stylesheet" href="../../css/materialize/materialize.min.css">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="../../css/recipe.css">
 </head>
 
     
@@ -62,7 +64,18 @@
 	<script>
 		$(document).ready(function(){
 			getAllRecipes();
+			
+			<sec:authorize access="hasAuthority('ADMIN')">
+				makeCall = function(rec_id_array){ 
+					$.ajax({
+						url: "/recipe/makeOld",
+						type: "POST",
+						data:'idArray[]='+rec_id_array,
+						success: function(data){
+						}        
+				    });
+				}
+			</sec:authorize>
 		});
 	</script>
-
 </html>

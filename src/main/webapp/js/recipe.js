@@ -18,16 +18,52 @@ function getAllRecipes(){
 		}
 
 		$.each(data, function(key, val){	
-			$('#trecipes').append('<tr><td>'+val.key+'</td>'
-					+'<td><a href="/recipe/'+val.key+'">'+val.name+'</a></td>'
-					+'<td>'+val.description+'</td>'
-					+'<td><a href="#" onclick="editRecipe('+val.key+')"><i class="material-icons">edit</i></a></td>'
-					+'<td><a href="/recipe/remove/'+val.key+'"><i class="material-icons">delete</i></a></td>'
-					+'</tr>');	
+			var value = "<tr><td>"+val.key+"</td>";
+			
+			/* if makeCall isDefined show yellow box */
+			if(val.isNew==true && typeof makeCall=='function') value = "<tr><td><div class=\"new-div orange\">&nbsp;</div><div>"+val.key+"</div></td>";
+			
+			value+= '<td><a href="/recipe/'+val.key+'">'+val.name+'</a></td>'
+			+'<td>'+val.description+'</td>'
+			+'<td><a href="#" onclick="editRecipe('+val.key+')"><i class="material-icons">edit</i></a></td>'
+			+'<td><a href="/recipe/remove/'+val.key+'"><i class="material-icons">delete</i></a></td>'
+			+'</tr>';
+			
+			$('#trecipes').append(value);
 		});
+	}).done(function() {
+		setInterval(changeClass, 300);
+		
+		/* if makeCall isDefined makeAllRecipesOld */
+		if(typeof makeCall=='function') makeAllRecipesOld();
 	});
 }
 
+changeClass = function(){
+	[].forEach.call(
+	    document.querySelectorAll('.new-div'),
+	    
+	    function (el) {
+	    	el.classList.toggle('orange');
+	    	el.classList.toggle('white');
+	    }
+	);
+}
+
+
+makeAllRecipesOld = function(){
+	var rec_id_array = [];
+	var newDiv = $('.new-div');
+	
+	for(var i=0; i<newDiv.length; i++){
+		var r_id = newDiv[i].parentElement.lastElementChild.textContent;
+		rec_id_array.push(r_id);					
+	}
+	
+	if(rec_id_array.length>0){
+		makeCall(rec_id_array);		
+	}
+}
 
 function editRecipe(id){
 	$.getJSON("/recipe/edit/"+id, function(data){
