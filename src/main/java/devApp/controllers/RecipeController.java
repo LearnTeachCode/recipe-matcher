@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,15 +43,19 @@ public class RecipeController {
 	
 	@RequestMapping(value={"/add"})
 	public String addRecipe(@ModelAttribute("recipe") Recipe recipe){
+		WebUser webUser = (WebUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		if(recipe.getKey()!=0){
 			Recipe exRecipe = this.recipeService.getRecipeById(recipe.getKey());
-			
+
 			recipe.setIngredients(exRecipe.getIngredients());
 			recipe.setOwner(exRecipe.getOwner());
 			recipe.setIsNew(exRecipe.isIsNew());
+			
+			/* If the user doesn't have admin role isEnabled value remains the same */	
+			if(!webUser.getAuthorities().contains(new SimpleGrantedAuthority("ADMIN"))) recipe.setEnabled(exRecipe.isEnabled());
 		} else {		
-			/* Setting recipe owner */
-			WebUser webUser = (WebUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
+			/* Setting recipe owner */			
 			recipe.setOwner(webUser.getId());
 		}
 		

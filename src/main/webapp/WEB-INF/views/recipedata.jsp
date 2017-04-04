@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" href="../../css/materialize/materialize.min.css">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="../../css/recipe.css">
 </head>
 
 <body>

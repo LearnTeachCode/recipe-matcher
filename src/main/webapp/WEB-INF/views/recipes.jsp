@@ -35,8 +35,8 @@
 			            <input id="key" type="text" name="key" readonly disabled /> 
 		                <input id="hidden-key" type="hidden" name="key" disabled /> 			          
 			        </div>
-			    </div>
-			    <div class="row">
+			    </div>			    
+			    <div class="row div-name">
 			        <div class="input-field col s3">
 			          	<label for="name">Name</label>
 						<input type="text" name="name" /> 
@@ -47,7 +47,7 @@
 			          	<label for="descr">Description</label>
 						<textarea id="descr" class="materialize-textarea" name="description"></textarea>
 			        </div>
-			    </div>			    
+			    </div>
 			    <div class="row">
 				    <button id="submit-btn" class="btn waves-effect waves-light" type="submit">Add Recipe
 					    <i class="material-icons right">send</i>
@@ -74,6 +74,12 @@
 						success: function(data){
 						}        
 				    });
+				}
+				
+				activate = function(value){										
+					$(".div-name").after("<div class='row' id='active-div'><div class='input-field col s3'><select id='sel-enable' name='enabled'><option value='0'>Inactive</option><option value='1'>Active</option></select><label for='enabled'>Active/Inactive</label></div></div>");
+					
+					if(value) $("#sel-enable>option[value=1]").prop("selected", true);
 				}
 			</sec:authorize>
 		});

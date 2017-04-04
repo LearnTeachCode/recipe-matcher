@@ -51,7 +51,7 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		List<Recipe> matchedRecipes = new ArrayList<>();
 
-		recipe_loop: for(Recipe exist_recipe : this.listRecipes()){
+		recipe_loop: for(Recipe exist_recipe : this.recipeDao.findAllByIsEnabled(true)){
 			Set<Ingredient> ingredients = exist_recipe.getIngredients();
 			
 			if(inputIngredientNamesSet.size() < ingredients.size()*percentage/100) 

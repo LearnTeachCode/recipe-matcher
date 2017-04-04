@@ -13,3 +13,6 @@
 	width: 9px;
 	height: 11px !important;
 }
+.tr-disabled>td,.tr-disabled>td>a {
+	color: red;
+}

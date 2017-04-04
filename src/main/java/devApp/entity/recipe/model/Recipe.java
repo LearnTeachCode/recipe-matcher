@@ -45,6 +45,9 @@ public class Recipe implements Serializable{
 	
 	@Column(name="ISNEW", nullable = false, columnDefinition = "TINYINT", length = 1)
 	private boolean isNew = true;
+
+	@Column(name="ISENABLED", nullable = false, columnDefinition = "TINYINT", length = 1)
+	private boolean isEnabled = false;
 	
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)	
@@ -83,8 +86,8 @@ public class Recipe implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Recipe [key=" + key + ", name=" + name + ", description=" + description + ", ingredients=" + ingredients
-				+ "]";
+		return "Recipe [key=" + key + ", name=" + name + ", description=" + description + ", owner=" + owner
+				+ ", isNew=" + isNew + ", isEnabled=" + isEnabled + ", ingredients=" + ingredients + "]";
 	}
 	
 	/*
@@ -121,6 +124,14 @@ public class Recipe implements Serializable{
 
 	public void setIsNew(boolean isNew) {
 		this.isNew = isNew;
+	}
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 	
 }

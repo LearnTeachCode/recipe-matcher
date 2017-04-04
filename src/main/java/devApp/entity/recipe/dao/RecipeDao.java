@@ -11,4 +11,6 @@ import devApp.entity.recipe.model.Recipe;
 public interface RecipeDao extends CrudRepository<Recipe, Integer> {
 
 	public List<Recipe> findAllByOrderByIsNewDescKeyDesc();
+	
+	public List<Recipe> findAllByIsEnabled(Boolean enabled);
 }

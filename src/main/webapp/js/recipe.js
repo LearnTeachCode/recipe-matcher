@@ -17,10 +17,14 @@ function getAllRecipes(){
 			$('#trecipes').append('<thead><tr><th data-field="id">ID</th><th data-field="name">Name</th><th data-field="desc">Description</th><th data-field="edit">Edit</th><th data-field="del">Delete</th></tr></thead><tbody></tbody>');
 		}
 
-		$.each(data, function(key, val){	
-			var value = "<tr><td>"+val.key+"</td>";
+		$.each(data, function(key, val){
+			var classAttribute = "";
 			
-			/* if makeCall isDefined show yellow box */
+			if(!val.enabled) classAttribute = "tr-disabled";
+			    
+			var value = "<tr class='"+classAttribute+"'><td>"+val.key+"</td>";
+			
+			/* if makeCall isDefined show the yellow box */
 			if(val.isNew==true && typeof makeCall=='function') value = "<tr><td><div class=\"new-div orange\">&nbsp;</div><div>"+val.key+"</div></td>";
 			
 			value+= '<td><a href="/recipe/'+val.key+'">'+val.name+'</a></td>'
@@ -50,7 +54,6 @@ changeClass = function(){
 	);
 }
 
-
 makeAllRecipesOld = function(){
 	var rec_id_array = [];
 	var newDiv = $('.new-div');
@@ -68,7 +71,7 @@ makeAllRecipesOld = function(){
 function editRecipe(id){
 	$.getJSON("/recipe/edit/"+id, function(data){
 		$.each(data, function(key, val){
-
+			
 			$("label[for='key']").addClass("active");
 			$('#key').val(val.key);
 			
@@ -82,6 +85,14 @@ function editRecipe(id){
 			
 			$('#submit-btn').text("Update Recipe");
 			$('#row-id').removeClass("hide");
+			
+			if(typeof activate=='function'){
+				$('#active-div').remove();
+				activate(val.enabled);				
+				$('select').material_select();
+			}	
 		});	
 	});
 }
+
+
