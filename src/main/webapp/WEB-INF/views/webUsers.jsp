@@ -8,8 +8,11 @@
 	<title>Web Users</title>
 
 	<link rel="stylesheet" href="../../css/materialize/materialize.min.css">
+	<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
 	<link rel="stylesheet" href="../../css/custom.css">
+	<link rel="stylesheet" href="../../css/pagination.css">	
 </head>
 
     
@@ -24,6 +27,7 @@
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	<script src="../../js/materialize/materialize.min.js"></script>
 	<script src="../../js/webUsers.js"></script>
 	

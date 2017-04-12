@@ -7,10 +7,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Home</title>
-
+   
 	<link rel="stylesheet" href="../../css/materialize/materialize.min.css">
+	<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="../../css/recipe.css">
+	
+	<link rel="stylesheet" href="../../css/recipe.css">	
+	<link rel="stylesheet" href="../../css/pagination.css">	
 </head>
 
     
@@ -58,9 +61,10 @@
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	<script src="../../js/materialize/materialize.min.js"></script>
 	<script src="../../js/recipe.js"></script>
-	
+		
 	<script>
 		$(document).ready(function(){
 			getAllRecipes();

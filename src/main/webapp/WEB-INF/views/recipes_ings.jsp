@@ -9,10 +9,12 @@
 
 	<link rel="stylesheet" href="../../css/materialize/materialize.min.css">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/addel/addel.css">
 	
 	<link rel="stylesheet" href="../../css/pickList/pickList.css">
 	<link rel="stylesheet" href="../../css/recipes-ingredients.css">
+	<link rel="stylesheet" href="../../css/pagination.css">	
 </head>
 
     
@@ -42,6 +44,7 @@
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	<script src="../../js/materialize/materialize.min.js"></script>
 	
 	<script src="../../js/recipes_ings.js"></script>	

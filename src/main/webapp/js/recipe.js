@@ -40,6 +40,11 @@ function getAllRecipes(){
 		
 		/* if makeCall isDefined makeAllRecipesOld */
 		if(typeof makeCall=='function') makeAllRecipesOld();
+		
+		$('#trecipes').dataTable({
+	        /* No ordering during initialisation */
+	        "order": []
+	    });
 	});
 }
 
@@ -89,7 +94,7 @@ function editRecipe(id){
 			if(typeof activate=='function'){
 				$('#active-div').remove();
 				activate(val.enabled);				
-				$('select').material_select();
+				$('#sel-enable').material_select();
 			}	
 		});	
 	});

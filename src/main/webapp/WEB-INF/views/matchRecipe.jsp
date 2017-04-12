@@ -5,8 +5,10 @@
   
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/addel/addel.css">
   <link rel="stylesheet" href="../../css/range/jquery.range.css">
+  <link rel="stylesheet" href="../../css/pagination.css">
 </head>
 
 <body>
@@ -82,6 +84,7 @@
 	</div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
   <script src="../../js/materialize/materialize.min.js"></script>
 	
   <script src="../../js/addel/addel.jquery.min.js"></script>

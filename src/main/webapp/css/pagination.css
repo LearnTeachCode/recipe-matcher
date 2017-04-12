@@ -1,0 +1,42 @@
+.dataTables_info, .dataTables_paginate{
+	font-size: 14px;
+}
+
+.current{
+	font-size: 12px;
+}
+
+.previous, .next {
+	padding: 4px !important;
+}
+
+.dataTables_length>label, .dataTables_filter>label{
+	font-size: 14px;
+	color: black;	
+}	
+
+.dataTables_length>label>select{
+	display: -webkit-inline-box !important;
+	width: inherit;
+	height: inherit !important;
+	padding: 2px !important;
+}
+	
+input[type=search]{
+	background: none !important;
+	border: 1px solid #b1a2a2 !important;
+	height: inherit !important;
+	width: inherit !important;
+	margin: 0 0 15px 5px !important;
+	padding: 3px !important;
+}
+
+input[type=search]:focus:not([readonly]){
+	border-bottom: none;
+	box-shadow: none;
+}	
+
+.paginate_button{
+	padding: 2px 6px !important;
+	margin-left: 1px !important;
+}

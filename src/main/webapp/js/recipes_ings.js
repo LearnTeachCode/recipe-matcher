@@ -14,6 +14,14 @@ function getRecipesIngs(){
 					+'<td>'+val.name+'</td>'
 					+'</tr>');	
 		});
+	}).done(function() {
+		$('#trecipes').dataTable({
+			"pageLength": 7,
+			"sort": false,
+	        "searching": false
+	    });
+		
+		$(".dataTables_info, .dataTables_length").remove();
 	});
 	
 	// loading all ingredients

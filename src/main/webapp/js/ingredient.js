@@ -13,6 +13,11 @@ function getAllIngredients(){
 					+'<td><a href="/manage/ingredient/remove/'+val.key+'"><i class="material-icons">delete</i></a></td>'
 					+'</tr>');	
 		});
+	}).done(function() {
+		$('#tingredients').dataTable({
+	        /* No ordering during initialisation */
+	        "order": []
+	    });
 	});
 }
 

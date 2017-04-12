@@ -35,6 +35,14 @@ function setRecipesData(matchedList){
 					+'<td>'+val.description+'</td>'
 					+'</tr>');	
 		});
+		
+		$('#trecipedata').dataTable({
+			"pageLength": 5,
+			"sort": false,
+	        "searching": false
+	    });
+		
+		$(".dataTables_info, .dataTables_length").remove();
 	} else {
 		if(jQuery.isArray(matchedList)) $("#div-no-matches").show();
 	}

@@ -25,6 +25,11 @@ function getAllWebUsers(securityRoles){
 				}
 			});
 		});
+		
+		$('#twebusers').dataTable({
+	        /* No ordering during initialisation */
+	        "order": []
+	    });
 	});
 }
 
