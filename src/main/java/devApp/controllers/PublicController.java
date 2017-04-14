@@ -49,4 +49,14 @@ public class PublicController {
     	
     	return "matchRecipe";
     }
+        
+    @RequestMapping(value={"/search"}, method=RequestMethod.GET)
+    public String getMatchRecipe(Model model, @RequestParam(value="q") String searchValue){
+    	List<Recipe> matchedList = this.recService.searchRecipe(searchValue.trim());
+    	String jsonMatchedRecipes = this.appHelper.getJsonList(matchedList, LOG, "recipes");
+    	
+    	model.addAttribute("matchedList", jsonMatchedRecipes);
+    	
+    	return "matchRecipe";
+    }
 }

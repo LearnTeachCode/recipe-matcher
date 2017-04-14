@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../../css/addel/addel.css">
   <link rel="stylesheet" href="../../css/range/jquery.range.css">
   <link rel="stylesheet" href="../../css/pagination.css">
+  <link rel="stylesheet" href="../../css/search-box.css">
 </head>
 
 <body>
@@ -74,9 +75,16 @@
 		<br/>
 		<div class="row">
 			<div class="col s6" style="margin-left: 6%;">
-				  <div id="div-no-matches" class="center collection" style="display: none;">
-				    <a href="#!" class="collection-item">No matching recipes were found</a>
-				  </div>
+				<form action="/search" method="GET" onSubmit="return searchValid();">	
+					<input type="submit" id="searchbtn" value="" />
+					<input id="rec-search" name="q" class="form-control searchfield" type="text" placeholder="search recipe..." required="required" />					
+				</form>	
+			</div>
+			
+			<div class="col s6" style="margin-left: 6%;">
+				<div id="div-no-matches" class="center collection" style="display: none;">
+				    <a href="#!" class="collection-item">No recipes were found</a>
+				</div>
 				
 				<table id="trecipedata" class="bordered highlight"></table>
 			</div>

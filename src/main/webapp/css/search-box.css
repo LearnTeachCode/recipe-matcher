@@ -1,0 +1,68 @@
+/** search input **/
+#searchform {
+  display: block;
+  margin-bottom: 15px;
+}
+
+
+.searchfield {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  float: right;
+  width: 45%;
+  margin-bottom: 20px;
+  margin-right: -5px;
+  padding: 11px 7px;
+  padding-right: 43px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #ccc;
+  border: 1px solid #c8c8c8;
+  border-bottom-color: #d2e2e7;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1), 0 0 0 6px #f0f0f0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1), 0 0 0 6px #f0f0f0;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1), 0 0 0 6px #f0f0f0;  
+  -webkit-transition: all 0.4s linear;
+  -moz-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+}
+
+.searchfield:focus {
+  color: #666;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 0 0 6px #e0e0e0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 0 0 6px #e0e0e0;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 0 0 6px #e0e0e0;
+}
+
+#searchbtn {
+  float: right;
+  margin-top: 7px;
+  margin-left: -50px;
+  /*
+  position: absolute;
+  right: 444px;
+  top: 110px;
+  */
+  height: 22px;
+  width: 22px;
+  border: 0;
+  cursor: pointer;
+  zoom: 1;
+	filter: alpha(opacity=65);
+	opacity: 0.65;
+  background: transparent url('../images/search.png') top left no-repeat;
+
+  -webkit-transition: all 0.4s linear;
+  -moz-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+}
+
+#searchbtn:hover, #searchbtn:focus {
+	filter: alpha(opacity=90);
+	opacity: 0.9;  
+}

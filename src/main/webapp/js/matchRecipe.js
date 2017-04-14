@@ -56,4 +56,13 @@ function toLowerCase(){
 	return true;
 }
 
-
+function searchValid(){
+	var searchValue = document.getElementById("rec-search").value;
+	
+	if(searchValue.trim()=="") {
+		alert("Empty search!");
+		return false;
+	}
+	
+	return true;
+}

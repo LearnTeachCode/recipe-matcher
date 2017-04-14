@@ -74,5 +74,10 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		return matchedRecipes;
 	}
+
+	@Override
+	public List<Recipe> searchRecipe(String searchValue) {		
+		return this.recipeDao.findByNameAndDescription(searchValue);
+	}
 	
 }
