@@ -43,14 +43,14 @@ public class Recipe implements Serializable{
 	@Column(name = "OWNER")
 	private Long owner;
 	
-	@Column(name="ISNEW", nullable = false, columnDefinition = "TINYINT", length = 1)
+	@Column(name="ISNEW", nullable = false, length = 1)
 	private boolean isNew = true;
 
-	@Column(name="ISENABLED", nullable = false, columnDefinition = "TINYINT", length = 1)
+	@Column(name="ISENABLED", nullable = false, length = 1)
 	private boolean isEnabled = false;
 	
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)	
 	@JoinTable(name = "Recipes_Ingredients", 
 		joinColumns = { @JoinColumn(name = "RECIPE_ID", nullable = false, updatable = false) }, 
 		inverseJoinColumns = { @JoinColumn(name = "INGREDIENT_ID", nullable = false, updatable = false) })

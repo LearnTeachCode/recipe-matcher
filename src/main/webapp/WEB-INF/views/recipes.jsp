@@ -85,7 +85,17 @@
 					
 					if(value) $("#sel-enable>option[value=1]").prop("selected", true);
 				}
-			</sec:authorize>
+
+				rValue = function(key, name, description){
+					var value = '<td><a href="/recipe/'+key+'">'+name+'</a></td>'
+						+'<td>'+description+'</td>'
+						+'<td><a href="#" onclick="editRecipe('+key+')"><i class="material-icons">edit</i></a></td>'
+						+'<td><a href="/recipe/remove/'+key+'" onclick="return confirm(\'The recipe may have ingredients associated. \\n Are you sure you want to continue?\')"><i class="material-icons">delete</i></a></td>'
+						+'</tr>';
+					
+					return value;
+				}
+			</sec:authorize>	        
 		});
 	</script>
 </html>

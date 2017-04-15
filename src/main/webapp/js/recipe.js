@@ -27,11 +27,15 @@ function getAllRecipes(){
 			/* if makeCall isDefined show the yellow box */
 			if(val.isNew==true && typeof makeCall=='function') value = "<tr><td><div class=\"new-div orange\">&nbsp;</div><div>"+val.key+"</div></td>";
 			
-			value+= '<td><a href="/recipe/'+val.key+'">'+val.name+'</a></td>'
-			+'<td>'+val.description+'</td>'
-			+'<td><a href="#" onclick="editRecipe('+val.key+')"><i class="material-icons">edit</i></a></td>'
-			+'<td><a href="/recipe/remove/'+val.key+'"><i class="material-icons">delete</i></a></td>'
-			+'</tr>';
+			if(typeof rValue=='function'){
+				value+= rValue(val.key, val.name, val.description);
+			} else {			
+				value+= '<td><a href="/recipe/'+val.key+'">'+val.name+'</a></td>'
+				+'<td>'+val.description+'</td>'
+				+'<td><a href="#" onclick="editRecipe('+val.key+')"><i class="material-icons">edit</i></a></td>'
+				+'<td><span style="color: black;"><i class="material-icons">delete</i></span></td>'
+				+'</tr>';
+			}
 			
 			$('#trecipes').append(value);
 		});
@@ -45,6 +49,9 @@ function getAllRecipes(){
 	        /* No ordering during initialisation */
 	        "order": []
 	    });
+		
+		/* if noRemove isDefined disable remove option */
+		if(typeof noRemove=='function') noRemove();
 	});
 }
 
