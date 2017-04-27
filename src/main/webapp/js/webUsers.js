@@ -41,7 +41,8 @@ function showEdit(editableObj) {
 
 
 function saveField(editableObj, column, id) {
-	var parentRowColor = $(editableObj).closest("tr").css("backgroundColor");
+	tableRow = $(editableObj).closest("tr");
+	var parentRowColor = tableRow.css("backgroundColor");
 	var editVal = $(editableObj).children().text();
 	
 	/* if the value is empty putting the value into span */
@@ -67,7 +68,7 @@ function saveToDatabase(editVal, column, id){
 		type: "POST",
 		data:'column='+column+'&editval='+editVal+'&id='+id,
 		success: function(data){
-			
+			$('#twebusers').DataTable().row(tableRow).invalidate();
 		}        
    });
 }
